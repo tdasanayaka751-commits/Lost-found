@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
+const dns = require('dns');
 const dotenv = require('dotenv');
+
+// Use public DNS to resolve SRV records on hotspots and ISPs that drop SRV lookups
+try {
+  dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
+} catch (e) {
+  // Ignore
+}
 const fs = require('fs');
 const path = require('path');
 const User = require('./src/models/User');
