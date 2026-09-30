@@ -5,13 +5,12 @@ const STORAGE_KEY = '@unifind_api_base_url';
 
 // Default host based on platform
 export const getDefaultApiUrl = () => {
-  // Production hosted backend can be placed here or configured live
-  if (Platform.OS === 'android') {
-    // 10.0.2.2 is Android emulator's alias to host loopback
-    return 'http://10.0.2.2:5000/api';
+  // If running in web browser
+  if (Platform.OS === 'web') {
+    return 'http://localhost:5000/api';
   }
-  // iOS simulator or web browser
-  return 'http://localhost:5000/api';
+  // Physical mobile device on the Wi-Fi network (or Android emulator)
+  return 'http://172.20.10.4:5000/api';
 };
 
 // Retrieve configured or default API base URL
