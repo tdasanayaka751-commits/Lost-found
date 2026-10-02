@@ -97,16 +97,18 @@ export default function ProfileScreen() {
         <View style={styles.presetRow}>
           <TouchableOpacity
             style={styles.presetBtn}
-            onPress={() => setCustomUrl('http://localhost:5000/api')}
+            onPress={() => setCustomUrl('http://172.20.10.4:5000/api')}
           >
-            <Text style={styles.presetText}>Localhost</Text>
+            <Text style={styles.presetText}>Wi-Fi IP</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.presetBtn}
-            onPress={() => setCustomUrl('http://10.0.2.2:5000/api')}
+            onPress={() =>
+              setCustomUrl('https://unifind-backend.up.railway.app/api')
+            }
           >
-            <Text style={styles.presetText}>Android (10.0.2.2)</Text>
+            <Text style={styles.presetText}>Railway</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -115,7 +117,14 @@ export default function ProfileScreen() {
               setCustomUrl('https://unifind-backend.onrender.com/api')
             }
           >
-            <Text style={styles.presetText}>Render Cloud</Text>
+            <Text style={styles.presetText}>Render</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.presetBtn}
+            onPress={() => setCustomUrl('http://localhost:5000/api')}
+          >
+            <Text style={styles.presetText}>Local</Text>
           </TouchableOpacity>
         </View>
 
