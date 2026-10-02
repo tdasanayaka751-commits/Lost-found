@@ -244,7 +244,20 @@ UniFind implements an interconnected state machine that strictly enforces five r
 4. Obtain the connection string:
    `mongodb+srv://unifind_admin:<password>@cluster0.abcde.mongodb.net/unifind_db?retryWrites=true&w=majority`
 
-### Step 2: Render.com Backend Deployment
+### Step 2: Cloud Backend Deployment (Railway or Render)
+
+#### Option A: Railway.app Deployment (Recommended - Zero Cold Starts)
+1. Log into [Railway.com](https://railway.com/) and click **+ New Project -> Deploy from GitHub repo**.
+2. Select your repository: `Lost-found`.
+3. In service **Settings -> Service Settings**, set **Root Directory** to `backend`.
+4. In **Variables**, add:
+   - `NODE_ENV = production`
+   - `JWT_SECRET = sliit_unifind_secure_jwt_secret_key_2026_se2020`
+   - `MONGODB_URI = mongodb+srv://...`
+5. In **Settings -> Networking**, click **Generate Domain**.
+6. Test the live health check: `https://<your-service>.up.railway.app/api/health`.
+
+#### Option B: Render.com Backend Deployment
 1. Connect your GitHub repository to [Render.com](https://render.com).
 2. Create a **New Web Service**:
    - **Root Directory:** `backend`
@@ -261,7 +274,7 @@ UniFind implements an interconnected state machine that strictly enforces five r
 
 ### Step 3: Mobile App Configuration
 - In React Native, users or examiners do not need to recompile the app to switch backend endpoints.
-- Navigate to the **Profile** screen -> enter the live Render URL (e.g. `https://unifind-backend.onrender.com/api`) -> Tap **Save Server URL**.
+- Navigate to the **Profile** screen -> enter the live Railway or Render URL (e.g. `https://<service>.up.railway.app/api`) -> Tap **Save Server URL**.
 - The app stores this in `AsyncStorage` and directs all future API requests and photo uploads to the cloud server.
 
 ---

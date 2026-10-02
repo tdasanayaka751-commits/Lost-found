@@ -190,19 +190,31 @@ WMTRR/
 4. Click **Connect -> Drivers** and copy connection string:
    `mongodb+srv://<username>:<password>@cluster0.mongodb.net/unifind?retryWrites=true&w=majority`
 
-### Step 2: Render.com Backend Hosting
+### Step 2: Cloud Backend Hosting (Railway or Render)
+
+#### Option A: Railway.app (Recommended - No Cold Starts)
 1. Push this repository to GitHub.
-2. Log into [Render](https://render.com/) and click **New -> Web Service**.
-3. Connect your repository and configure:
+2. Log into [Railway](https://railway.com/) and click **+ New Project -> Deploy from GitHub repo**.
+3. Select your repository: `Lost-found`.
+4. In service **Settings -> Service Settings**, set **Root Directory** to `backend`.
+5. In **Variables**, add:
+   - `MONGODB_URI`: `<Your MongoDB Atlas connection string>`
+   - `JWT_SECRET`: `sliit_unifind_secure_jwt_secret_key_2026_se2020`
+   - `NODE_ENV`: `production`
+6. In **Settings -> Networking**, click **Generate Domain**. Note your live URL: `https://<service-name>.up.railway.app`.
+
+#### Option B: Render.com
+1. Log into [Render](https://render.com/) and click **New -> Web Service**.
+2. Connect your repository and configure:
    - **Root Directory:** `backend`
    - **Build Command:** `npm install`
    - **Start Command:** `node server.js`
-4. In **Environment Variables**, add:
+3. In **Environment Variables**, add:
    - `MONGODB_URI`: `<Your MongoDB Atlas connection string>`
    - `JWT_SECRET`: `<Your production secret>`
    - `NODE_ENV`: `production`
-   - `PORT`: `10000`
-5. Click **Deploy**. Note your live URL: `https://<service-name>.onrender.com`.
+4. Click **Deploy**. Note your live URL: `https://<service-name>.onrender.com`.
 
 ### Step 3: Connect Mobile App to Live Backend
-Open the mobile app -> go to **Profile** tab -> enter your live URL (e.g. `https://<service-name>.onrender.com/api`) and tap **Save Server URL**. The mobile app will now fetch and upload directly to your deployed backend!
+Open the mobile app -> go to **Profile** tab -> enter your live URL (e.g. `https://<service-name>.up.railway.app/api` or `https://<service-name>.onrender.com/api`) and tap **Save Server URL**. The mobile app will now fetch and upload directly to your deployed backend!
+
